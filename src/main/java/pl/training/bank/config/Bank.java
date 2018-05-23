@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import pl.training.bank.common.BeanLoggerPostProcessor;
 import pl.training.bank.common.ContextListener;
-import pl.training.bank.common.Profiler;
+import pl.training.bank.common.aop.Profiler;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;

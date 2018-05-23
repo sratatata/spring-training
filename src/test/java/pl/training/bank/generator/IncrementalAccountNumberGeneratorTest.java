@@ -2,6 +2,7 @@ package pl.training.bank.generator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.training.bank.generator.service.IncrementalAccountNumberGenerator;
 
 import static java.lang.Integer.parseInt;
 import static org.junit.jupiter.api.Assertions.assertEquals;

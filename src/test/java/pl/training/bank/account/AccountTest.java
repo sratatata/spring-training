@@ -2,6 +2,7 @@ package pl.training.bank.account;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.training.bank.account.entity.Account;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

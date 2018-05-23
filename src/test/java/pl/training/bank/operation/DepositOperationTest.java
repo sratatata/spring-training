@@ -2,7 +2,8 @@ package pl.training.bank.operation;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.training.bank.account.Account;
+import pl.training.bank.account.entity.Account;
+import pl.training.bank.operation.service.DepositOperation;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

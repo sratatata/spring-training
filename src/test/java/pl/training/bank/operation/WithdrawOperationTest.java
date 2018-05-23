@@ -3,7 +3,9 @@ package pl.training.bank.operation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.training.bank.account.Account;
+import pl.training.bank.account.entity.Account;
+import pl.training.bank.operation.service.InsufficientFundsException;
+import pl.training.bank.operation.service.WithdrawOperation;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;

@@ -3,11 +3,13 @@ package pl.training.bank.account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import pl.training.bank.common.ResultPage;
-import pl.training.bank.generator.AccountNumberGenerator;
+import pl.training.bank.account.entity.Account;
+import pl.training.bank.account.repository.AccountRepository;
+import pl.training.bank.account.services.AccountService;
+import pl.training.bank.common.aop.ResultPage;
+import pl.training.bank.generator.service.AccountNumberGenerator;
 
 import java.util.ArrayList;
 

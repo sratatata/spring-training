@@ -3,11 +3,13 @@ package pl.training.bank.disposition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.training.bank.account.Account;
-import pl.training.bank.account.AccountNotFoundException;
-import pl.training.bank.account.AccountRepository;
-import pl.training.bank.operation.Operation;
-import pl.training.bank.operation.UnknownOperationException;
+import pl.training.bank.account.entity.Account;
+import pl.training.bank.account.services.AccountNotFoundException;
+import pl.training.bank.account.repository.AccountRepository;
+import pl.training.bank.disposition.entity.Disposition;
+import pl.training.bank.disposition.service.DispositionService;
+import pl.training.bank.operation.entity.Operation;
+import pl.training.bank.operation.service.UnknownOperationException;
 
 import java.util.Map;
 import java.util.Optional;
