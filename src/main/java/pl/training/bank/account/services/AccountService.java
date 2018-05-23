@@ -29,17 +29,14 @@ public class AccountService {
         return new ResultPage<>(result.getContent(), pageNumber, result.getTotalPages());
     }
 
-    public void init() {
-        log.info("### Initializing: " + getClass().getSimpleName());
-    }
-
-    public void destroy() {
-        log.info("### Closing: " + getClass().getSimpleName());
-    }
-
     public Account getAccountById(Long id) {
         return accountRepository.getById(id)
                 .orElseThrow(AccountNotFoundException::new);
+    }
+
+    public void deleteAccount(Long id) {
+        Account account = getAccountById(id);
+        accountRepository.delete(account);
     }
 
 }
