@@ -1,4 +1,4 @@
-package pl.training.bank.config;
+package pl.training.bank.operation;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import pl.training.bank.operation.aop.OperationHistoryLogger;
 import pl.training.bank.operation.service.OperationHistoryRepository;
 
 @Configuration
-public class Operation {
+public class OperationConfig {
 
     @Bean
     public DepositOperation deposit() {

@@ -1,4 +1,4 @@
-package pl.training.bank.config;
+package pl.training.bank;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
 @EnableSwagger2
 @Configuration
-public class Mvc implements WebMvcConfigurer {
+public class MvcConfig implements WebMvcConfigurer {
 
     @Bean
     public Mapper mapper() {

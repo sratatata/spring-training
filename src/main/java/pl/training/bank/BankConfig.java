@@ -1,4 +1,4 @@
-package pl.training.bank.config;
+package pl.training.bank;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import pl.training.bank.common.ContextListener;
 import pl.training.bank.common.aop.Profiler;
 
 @Configuration
-public class Bank {
+public class BankConfig {
 
     @Bean
     public BeanLoggerPostProcessor beanLogger() {
