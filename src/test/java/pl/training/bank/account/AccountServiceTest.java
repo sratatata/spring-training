@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class AccountServiceTest {
@@ -30,7 +29,7 @@ public class AccountServiceTest {
     public void setUp() {
         when(accountNumberGenerator.getNext()).thenReturn(ACCOUNT_NUMBER);
         when(accountRepository.save(any(Account.class))).then(returnsFirstArg());
-        when(accountRepository.findAll(PageRequest.of(0, 1))).thenReturn(new PageImpl<>(new ArrayList<>()));
+        when(accountRepository.findAll(new PageRequest(0, 1))).thenReturn(new PageImpl<>(new ArrayList<>()));
         resultPage.setTotalPages(1);
     }
 

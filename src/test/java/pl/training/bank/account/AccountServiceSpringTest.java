@@ -15,7 +15,7 @@ import pl.training.bank.generator.service.AccountNumberGenerator;
 
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)

@@ -1,12 +1,10 @@
 package pl.training.bank.legacy;
 
-import javax.ejb.Stateless;
+import javax.ejb.Local;
 
-@Stateless
-public class TimeService {
+@Local
+public interface TimeService {
 
-    public long getTime() {
-        return System.currentTimeMillis();
-    }
+    long getTime();
 
 }

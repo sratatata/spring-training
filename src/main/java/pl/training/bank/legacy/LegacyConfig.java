@@ -33,7 +33,7 @@ public class LegacyConfig {
         return defaultJmsListenerContainerFactory;
     }
 
-    //@Bean
+    @Bean
     public JmsReceiver receiver() {
         return new JmsReceiver();
     }

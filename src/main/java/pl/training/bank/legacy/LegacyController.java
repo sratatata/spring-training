@@ -2,6 +2,7 @@ package pl.training.bank.legacy;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +18,12 @@ public class LegacyController {
     @NonNull
     private JmsSender queueSender;
     private JndiTemplate jndiTemplate = new JndiTemplate();
+    //@Autowired
+    //private TimeService timeService;
 
     @RequestMapping(value = "time", method = RequestMethod.GET)
     public Long getTime() throws NamingException {
-        TimeService timeService = jndiTemplate.lookup("java:global/bank-1.0-SNAPSHOT/TimeService", TimeService.class);
+        TimeService timeService = jndiTemplate.lookup("java:global/bank-1.0-SNAPSHOT/TimeServiceProvider", TimeService.class);
         return timeService.getTime();
     }
 

@@ -11,11 +11,11 @@ import javax.jms.MessageListener;
 
 @Log
 @Setter
-@MessageDriven(activationConfig = {
+/*@MessageDriven(activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "BankDS"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")
-})
+})*/
 public class MessageService implements MessageListener {
 
     @Override

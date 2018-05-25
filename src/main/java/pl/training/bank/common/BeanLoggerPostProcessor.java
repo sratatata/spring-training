@@ -8,6 +8,11 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 public class BeanLoggerPostProcessor implements BeanPostProcessor {
 
     @Override
+    public Object postProcessBeforeInitialization(Object bean, String s) throws BeansException {
+        return bean;
+    }
+
+    @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         log.info("### Bean: " + beanName + " initialized");
         return bean;
