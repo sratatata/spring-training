@@ -22,8 +22,8 @@ public class DispositionService {
 
     public void process(Disposition disposition) {
         validatorService.validate(disposition, InvalidDispositionException.class);
-        Account account = accountService.get(disposition.getAccountNumber());
-        Operation operation = operationService.get(disposition.getOperationName());
+        Account account = accountService.getBy(disposition.getAccountNumber());
+        Operation operation = operationService.getBy(disposition.getOperationName());
         operation.execute(account, disposition.getFunds());
         accountService.update(account);
     }

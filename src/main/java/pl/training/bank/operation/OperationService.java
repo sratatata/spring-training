@@ -13,9 +13,9 @@ public class OperationService {
         operations.add(operation);
     }
 
-    public Operation get(OperationName operationName) {
+    public Operation getBy(String operationName) {
         return operations.stream()
-                .filter(operation -> operation.hasName(operationName.name()))
+                .filter(operation -> operation.nameEquals(operationName))
                 .findAny()
                 .orElseThrow(UnknownOperationException::new);
     }

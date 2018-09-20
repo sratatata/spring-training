@@ -4,13 +4,10 @@ import pl.training.bank.account.Account;
 
 public interface Operation {
 
-    String OPERATION_NAME_SUFFIX = "Operation";
+   void execute(Account account, long funds);
 
-    void execute(Account account, long funds);
-
-    default boolean hasName(String name) {
-        String className = getClass().getSimpleName();
-        String operationName = className.replaceFirst(OPERATION_NAME_SUFFIX, "").toUpperCase();
+    default boolean nameEquals(String name) {
+        String operationName = getClass().getSimpleName().toLowerCase();
         return operationName.equals(name);
     }
 

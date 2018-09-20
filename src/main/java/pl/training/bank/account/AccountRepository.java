@@ -10,7 +10,7 @@ public interface AccountRepository {
 
     ResultPage<Account> get(int pageNumber, int pageSize);
 
-    Optional<Account> get(String accountNumber);
+    Optional<Account> getBy(String accountNumber);
 
     void update(Account account);
 

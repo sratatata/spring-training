@@ -2,7 +2,7 @@ package pl.training.bank.operation;
 
 import pl.training.bank.account.Account;
 
-public class WithdrawOperation implements Operation {
+public class Withdraw implements Operation {
 
     @Override
     public void execute(Account account, long funds) {

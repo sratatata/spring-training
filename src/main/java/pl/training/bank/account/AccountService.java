@@ -18,8 +18,8 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public Account get(String accountNumber) {
-        return accountRepository.get(accountNumber)
+    public Account getBy(String accountNumber) {
+        return accountRepository.getBy(accountNumber)
                 .orElseThrow(AccountNotFoundException::new);
     }
 
