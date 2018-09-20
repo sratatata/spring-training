@@ -4,16 +4,17 @@ import lombok.Setter;
 import pl.training.bank.common.ResultPage;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class HashMapAccountRepository implements AccountRepository {
 
     @Setter
     private Map<String, Account> accounts = new LinkedHashMap<>();
-    private long counter;
+    private AtomicLong counter = new AtomicLong();
 
     @Override
     public Account save(Account account) {
-        account.setId(++counter);
+        account.setId(counter.incrementAndGet());
         accounts.put(account.getNumber(), account);
         return account;
     }
@@ -30,10 +31,7 @@ public class HashMapAccountRepository implements AccountRepository {
 
     @Override
     public void update(Account account) {
-        String accountNumber = account.getNumber();
-        if (accounts.containsKey(accountNumber)) {
-            accounts.put(accountNumber, account);
-        }
+        accounts.replace(account.getNumber(), account);
     }
 
 }
