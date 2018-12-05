@@ -28,6 +28,7 @@ public class AccountService {
     }
 
     public void update(Account account) {
+        getBy(account.getNumber());
         accountRepository.update(account);
     }
 
