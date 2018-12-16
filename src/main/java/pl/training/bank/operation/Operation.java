@@ -6,7 +6,7 @@ public interface Operation {
 
     void execute(Account account, long funds);
 
-    default boolean nameEquals(String name) {
+    default boolean hasName(String name) {
         String operationName = getClass().getSimpleName().toLowerCase();
         return operationName.equals(name);
     }
