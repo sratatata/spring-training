@@ -1,17 +1,18 @@
 package pl.training.bank.operation;
 
-import lombok.Setter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
-import java.util.HashSet;
 import java.util.Set;
 
+@RequiredArgsConstructor
 public class OperationService {
 
-    @Setter
-    private Set<Operation> definedOperations = new HashSet<>();
+    @NonNull
+    private Set<Operation> operations;
 
-     public Operation getBy(String operationName) {
-        return definedOperations.stream()
+    public Operation getBy(String operationName) {
+        return operations.stream()
                 .filter(operation -> operation.hasName(operationName))
                 .findAny()
                 .orElseThrow(UnknownOperationException::new);

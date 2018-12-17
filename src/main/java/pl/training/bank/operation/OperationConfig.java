@@ -20,9 +20,7 @@ public class OperationConfig {
 
     @Bean
     public OperationService operationService(Set<Operation> operations) {
-        OperationService operationService = new OperationService();
-        operationService.setDefinedOperations(operations);
-        return operationService;
+        return new OperationService(operations);
     }
 
 }
