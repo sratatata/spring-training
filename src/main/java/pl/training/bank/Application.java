@@ -6,11 +6,14 @@ import pl.training.bank.common.ValidatorService;
 import pl.training.bank.disposition.Disposition;
 import pl.training.bank.disposition.DispositionService;
 import pl.training.bank.operation.Deposit;
+import pl.training.bank.operation.Operation;
 import pl.training.bank.operation.OperationService;
 import pl.training.bank.operation.Withdraw;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Application {
 
@@ -22,8 +25,10 @@ public class Application {
         AccountNumberGenerator accountNumberGenerator = new IncrementalAccountNumberGenerator();
         AccountService accountService = new AccountService(accountNumberGenerator, accountRepository);
 
-        OperationService operationService = new OperationService();
-        operationService.add(new Deposit(), new Withdraw());
+        Set<Operation> operations = new HashSet<>();
+        operations.add(new Deposit());
+        operations.add(new Withdraw());
+        OperationService operationService = new OperationService(operations);
 
         DispositionService dispositionService = new DispositionService(accountService, operationService, validatorService);
 
