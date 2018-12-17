@@ -9,10 +9,10 @@ import java.util.Set;
 public class OperationService {
 
     @NonNull
-    private Set<Operation> definedOperations;
+    private Set<Operation> operations;
 
     public Operation getBy(String operationName) {
-        return definedOperations.stream()
+        return operations.stream()
                 .filter(operation -> operation.hasName(operationName))
                 .findAny()
                 .orElseThrow(UnknownOperationException::new);
