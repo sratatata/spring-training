@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <hibernate.validator>6.0.10.Final</hibernate.validator>
+        <hibernate.validator>6.0.13.Final</hibernate.validator>
     </properties>
 
     <dependencies>
