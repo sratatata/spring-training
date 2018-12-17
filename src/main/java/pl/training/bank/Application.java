@@ -1,5 +1,6 @@
 package pl.training.bank;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import pl.training.bank.account.*;
 import pl.training.bank.common.ResultPage;
 import pl.training.bank.common.ValidatorService;
@@ -15,26 +16,19 @@ import javax.validation.Validator;
 public class Application {
 
     public static void main(String[] args) {
-        Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-        ValidatorService validatorService = new ValidatorService(validator);
+        try (AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext("pl.training.bank")) {
+            AccountService accountService = applicationContext.getBean(AccountService.class);
+            DispositionService dispositionService = applicationContext.getBean(DispositionService.class);
 
-        AccountRepository accountRepository = new HashMapAccountRepository();
-        AccountNumberGenerator accountNumberGenerator = new IncrementalAccountNumberGenerator();
-        AccountService accountService = new AccountService(accountNumberGenerator, accountRepository);
+            Account account = accountService.create();
 
-        OperationService operationService = new OperationService();
-        operationService.add(new Deposit(), new Withdraw());
+            Disposition deposit = new Disposition(account.getNumber(), 1_000, "deposit");
+            Disposition withdraw = new Disposition(account.getNumber(), 500, "withdraw");
+            dispositionService.process(deposit, withdraw);
 
-        DispositionService dispositionService = new DispositionService(accountService, operationService, validatorService);
-
-        Account account = accountService.create();
-
-        Disposition deposit = new Disposition(account.getNumber(), 1_000, "deposit");
-        Disposition withdraw = new Disposition(account.getNumber(), 500, "withdraw");
-        dispositionService.process(deposit, withdraw);
-
-        ResultPage<Account> resultPage = accountService.get(0, 10);
-        resultPage.getData().forEach(System.out::println);
+            ResultPage<Account> resultPage = accountService.get(0, 10);
+            resultPage.getData().forEach(System.out::println);
+        }
     }
 
 }
