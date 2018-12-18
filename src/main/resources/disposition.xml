@@ -8,7 +8,7 @@
         <constructor-arg name="operationService" ref="operationService"/>
     </bean>
 
-    <bean id="dispositionLogger" class="pl.training.bank.disposition.ConsoleDispositionLogger"/>
+    <bean id="dispositionLogger" class="pl.training.bank.disposition.DispositionLogger"/>
 
     <aop:config>
         <aop:aspect ref="dispositionLogger">

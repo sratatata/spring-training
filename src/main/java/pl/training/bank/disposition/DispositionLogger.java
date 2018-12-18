@@ -2,7 +2,7 @@ package pl.training.bank.disposition;
 
 import pl.training.bank.BankException;
 
-public class ConsoleDispositionLogger {
+public class DispositionLogger {
 
     private static final String SEPARATOR = "##################################################################################################";
 
