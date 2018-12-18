@@ -8,8 +8,6 @@ import pl.training.bank.common.ValidatorService;
 import pl.training.bank.operation.Operation;
 import pl.training.bank.operation.OperationService;
 
-import static java.util.Arrays.stream;
-
 @RequiredArgsConstructor
 public class DispositionService {
 
@@ -26,10 +24,6 @@ public class DispositionService {
         Operation operation = operationService.getBy(disposition.getOperationName());
         operation.execute(account, disposition.getFunds());
         accountService.update(account);
-    }
-
-    public void process(Disposition... dispositions) {
-        stream(dispositions).forEach(this::process);
     }
 
 }
