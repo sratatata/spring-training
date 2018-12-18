@@ -13,4 +13,9 @@ public class DispositionConfig {
         return new DispositionService(accountService, operationService);
     }
 
+    @Bean
+    public ConsoleDispositionLogger dispositionLogger() {
+        return new ConsoleDispositionLogger();
+    }
+
 }
