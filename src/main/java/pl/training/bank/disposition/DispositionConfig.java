@@ -24,6 +24,17 @@ public class DispositionConfig {
     }
 
     @Bean
+    public LargeDepositLogger largeDepositLogger() {
+        return new LargeDepositLogger();
+    }
+
+    @Bean
+    public LargeDepositListener largeDepositListener() {
+        return new LargeDepositListener();
+    }
+
+
+    @Bean
     public ExecutedDispositionRepository executedDispositionRepository(DataSource dataSource) {
         return new JdbcExecutedDispositionRepository(dataSource);
     }

@@ -16,7 +16,7 @@ public class Application {
 
             Account account = accountService.create();
 
-            Disposition deposit = new Disposition(account.getNumber(), 1_000, "deposit");
+            Disposition deposit = new Disposition(account.getNumber(), 50_001, "deposit");
             Disposition withdraw = new Disposition(account.getNumber(), 500, "withdraw");
             dispositionService.process(deposit);
             dispositionService.process(withdraw);
