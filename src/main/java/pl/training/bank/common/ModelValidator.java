@@ -8,6 +8,9 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 
 import java.lang.annotation.Annotation;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Aspect
 @RequiredArgsConstructor
@@ -19,15 +22,25 @@ public class ModelValidator {
     @Before("execution(* *(@Validate (*)))")
     public void validate(JoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Annotation[][] annotations = methodSignature.getMethod().getParameterAnnotations();
-        Object[] args = joinPoint.getArgs();
-        for (int index = 0; index < args.length; index++) {
-           for (int annotationIndex = 0; annotationIndex < annotations[index].length; annotationIndex++) {
-               if (annotations[index][annotationIndex] instanceof Validate) {
-                   validatorService.validate(args[index], ((Validate) annotations[index][annotationIndex]).exception());
-               }
-           }
-        }
+        Object[] arguments = joinPoint.getArgs();
+        IntStream.range(0, arguments.length).forEach(index -> validate(methodSignature, arguments[index], index));
+    }
+
+    private void validate(MethodSignature methodSignature, Object parameter, int parameterIndex) {
+        Annotation[] annotations = getAnnotations(methodSignature, parameterIndex);
+        Optional<Validate> validateAnnotation = getValidateAnnotation(annotations);
+        validateAnnotation.ifPresent(validate -> validatorService.validate(parameter, validate.exception()));
+    }
+
+    private Annotation[] getAnnotations(MethodSignature methodSignature, int parameterIndex) {
+        return methodSignature.getMethod().getParameterAnnotations()[parameterIndex];
+    }
+
+    private Optional<Validate> getValidateAnnotation(Annotation[] annotations) {
+        return Arrays.stream(annotations)
+                .filter(annotation -> annotation instanceof Validate)
+                .map(annotation -> (Validate) annotation)
+                .findFirst();
     }
 
 }
