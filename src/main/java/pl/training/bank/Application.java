@@ -1,7 +1,8 @@
 package pl.training.bank;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import pl.training.bank.account.*;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import pl.training.bank.account.Account;
+import pl.training.bank.account.AccountService;
 import pl.training.bank.common.ResultPage;
 import pl.training.bank.disposition.Disposition;
 import pl.training.bank.disposition.DispositionService;
@@ -9,7 +10,7 @@ import pl.training.bank.disposition.DispositionService;
 public class Application {
 
     public static void main(String[] args) {
-        try (AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext("pl.training.bank")) {
+        try (ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bank.xml")) {
             AccountService accountService = applicationContext.getBean(AccountService.class);
             DispositionService dispositionService = applicationContext.getBean(DispositionService.class);
 

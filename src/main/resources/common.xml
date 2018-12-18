@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="validatorFactory" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <bean id="validatorService" class="pl.training.bank.common.validator.ValidatorService">
+        <constructor-arg name="validator" ref="validatorFactory"/>
+    </bean>
+
+    <bean id="profiler" class="pl.training.bank.common.profiler.Profiler"/>
+
+    <bean id="modelValidator" class="pl.training.bank.common.validator.ModelValidator">
+        <constructor-arg name="validatorService" ref="validatorService"/>
+    </bean>
+
+    <aop:config>
+        <aop:aspect ref="profiler">
+            <aop:around method="logExecutionTime" pointcut="@annotation(pl.training.bank.common.profiler.ExecutionTime)"/>
+        </aop:aspect>
+    </aop:config>
+
+</beans>
