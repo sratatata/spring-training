@@ -1,16 +1,21 @@
 package pl.training.bank;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @EnableTransactionManagement
 @PropertySource("classpath:jdbc.properties")
@@ -29,8 +34,24 @@ public class BankConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
+    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
+        return new HibernateTransactionManager(sessionFactory);
+    }
+
+    @Bean
+    public PropertiesFactoryBean hibernateProperties() {
+        PropertiesFactoryBean factoryBean = new PropertiesFactoryBean();
+        factoryBean.setLocation(new ClassPathResource("hibernate.properties"));
+        return factoryBean;
+    }
+
+    @Bean
+    public LocalSessionFactoryBean sessionFactory(DataSource dataSource, Properties hibernateProperties) {
+        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+        factoryBean.setDataSource(dataSource);
+        factoryBean.setHibernateProperties(hibernateProperties);
+        factoryBean.setPackagesToScan("pl.training.bank");
+        return factoryBean;
     }
 
 }

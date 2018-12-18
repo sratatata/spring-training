@@ -1,21 +1,20 @@
 package pl.training.bank.account;
 
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.sql.DataSource;
 
 @Configuration
 public class AccountConfig {
 
     @Bean
-    public AccountRepository accountRepository(DataSource dataSource) {
-        return new JdbcAccountRepository(dataSource);
+    public AccountRepository accountRepository(SessionFactory sessionFactory) {
+        return new HibernateAccountRepository(sessionFactory);
     }
 
     @Bean
-    public AccountNumberGenerator accountNumberGenerator(DataSource dataSource) {
-        return new JdbcIncrementalAccountNumberGenerator(dataSource);
+    public AccountNumberGenerator accountNumberGenerator(SessionFactory sessionFactory) {
+        return new HibernateIncrementalAccountNumberGenerator(sessionFactory);
     }
 
     @Bean
