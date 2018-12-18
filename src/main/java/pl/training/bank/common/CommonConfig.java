@@ -25,4 +25,9 @@ public class CommonConfig {
         return new ValidatorService(validator);
     }
 
+    @Bean
+    public ModelValidator modelValidator(ValidatorService validatorService) {
+        return new ModelValidator(validatorService);
+    }
+
 }

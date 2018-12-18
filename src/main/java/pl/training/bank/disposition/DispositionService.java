@@ -4,7 +4,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import pl.training.bank.account.Account;
 import pl.training.bank.account.AccountService;
-import pl.training.bank.common.ValidatorService;
+import pl.training.bank.common.Validate;
 import pl.training.bank.operation.Operation;
 import pl.training.bank.operation.OperationService;
 
@@ -17,19 +17,12 @@ public class DispositionService {
     private AccountService accountService;
     @NonNull
     private OperationService operationService;
-    @NonNull
-    private ValidatorService validatorService;
 
-    public void process(Disposition disposition) {
-        validatorService.validate(disposition, InvalidDispositionException.class);
+    public void process(@Validate(exception = InvalidDispositionException.class) Disposition disposition) {
         Account account = accountService.getBy(disposition.getAccountNumber());
         Operation operation = operationService.getBy(disposition.getOperationName());
         operation.execute(account, disposition.getFunds());
         accountService.update(account);
-    }
-
-    public void process(Disposition... dispositions) {
-        stream(dispositions).forEach(this::process);
     }
 
 }

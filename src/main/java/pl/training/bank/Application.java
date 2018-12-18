@@ -22,9 +22,10 @@ public class Application {
 
             Account account = accountService.create();
 
-            Disposition deposit = new Disposition(account.getNumber(), 1_000, "deposit");
+            Disposition deposit = new Disposition(account.getNumber(), 0, "deposit");
             Disposition withdraw = new Disposition(account.getNumber(), 500, "withdraw");
-            dispositionService.process(deposit, withdraw);
+            dispositionService.process(deposit);
+            dispositionService.process(withdraw);
 
             ResultPage<Account> resultPage = accountService.get(0, 10);
             resultPage.getData().forEach(System.out::println);

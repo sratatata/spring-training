@@ -10,8 +10,8 @@ import pl.training.bank.operation.OperationService;
 public class DispositionConfig {
 
     @Bean
-    public DispositionService dispositionService(AccountService accountService, OperationService operationService, ValidatorService validatorService) {
-        return new DispositionService(accountService, operationService, validatorService);
+    public DispositionService dispositionService(AccountService accountService, OperationService operationService) {
+        return new DispositionService(accountService, operationService);
     }
 
 }
