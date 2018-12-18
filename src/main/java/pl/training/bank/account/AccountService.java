@@ -2,8 +2,10 @@ package pl.training.bank.account;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import pl.training.bank.common.ResultPage;
 
+@Transactional
 @RequiredArgsConstructor
 public class AccountService {
 

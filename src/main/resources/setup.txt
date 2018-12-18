@@ -1,0 +1,4 @@
+create database bank;
+\c bank;
+create table account (id serial, account_number varchar(26), balance bigint);
+create table history (id serial, account_number varchar(26), funds bigint, operation_timestamp bigint, operation_type  varchar(50));
