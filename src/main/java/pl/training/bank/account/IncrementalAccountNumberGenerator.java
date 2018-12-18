@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import static java.lang.Long.parseLong;
+
 @Service("accountNumberGenerator")
 public class IncrementalAccountNumberGenerator implements AccountNumberGenerator {
 
@@ -14,6 +16,12 @@ public class IncrementalAccountNumberGenerator implements AccountNumberGenerator
     @Override
     public String next() {
         return String.format(ACCOUNT_NUMBER_FORMAT, counter.incrementAndGet());
+    }
+
+    public void setCurrentAccountNumber(String accountNumber) {
+        if (accountNumber != null) {
+            counter = new AtomicLong(parseLong(accountNumber));
+        }
     }
 
 }
