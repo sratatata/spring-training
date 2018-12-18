@@ -3,7 +3,6 @@ package pl.training.bank.common.validator;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 
 import java.lang.annotation.Annotation;
@@ -11,7 +10,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-@Aspect
 @RequiredArgsConstructor
 public class ModelValidator {
 

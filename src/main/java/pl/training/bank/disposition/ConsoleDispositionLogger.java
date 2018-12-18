@@ -6,9 +6,6 @@ public class ConsoleDispositionLogger {
 
     private static final String SEPARATOR = "##################################################################################################";
 
-    public void process() {
-    }
-
     public void onStart(Disposition disposition) {
         System.out.format("%s\n%s\n", SEPARATOR, disposition);
     }
