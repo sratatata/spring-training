@@ -19,6 +19,9 @@
         <aop:aspect ref="profiler">
             <aop:around method="logExecutionTime" pointcut="@annotation(pl.training.bank.common.profiler.ExecutionTime)"/>
         </aop:aspect>
+        <aop:aspect ref="modelValidator">
+            <aop:before method="validate" pointcut="bean(dispositionService)"/>
+        </aop:aspect>
     </aop:config>
 
 </beans>

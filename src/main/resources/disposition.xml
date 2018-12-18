@@ -11,8 +11,11 @@
     <bean id="dispositionLogger" class="pl.training.bank.disposition.ConsoleDispositionLogger"/>
 
     <aop:config>
-        <aop:aspect ref="modelValidator">
-            <aop:before method="validate" pointcut="bean(dispositionService)"/>
+        <aop:aspect ref="dispositionLogger">
+            <aop:pointcut id="process" expression="execution(void pl.training.bank.disposition.DispositionService.process(..))"/>
+            <aop:before method="onStart" pointcut="execution(void pl.training.bank.disposition.DispositionService.process(..)) and args(disposition)"/>
+            <aop:after-returning method="onSuccess" pointcut-ref="process"/>
+            <aop:after-throwing method="onException" pointcut-ref="process" throwing="ex"/>
         </aop:aspect>
     </aop:config>
 
