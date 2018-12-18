@@ -31,6 +31,7 @@ public class Application {
         OperationService operationService = new OperationService(operations);
 
         DispositionService dispositionService = new DispositionService(accountService, operationService, validatorService);
+        dispositionService.init();
 
         Account account = accountService.create();
 
@@ -41,6 +42,7 @@ public class Application {
 
         ResultPage<Account> resultPage = accountService.get(0, 10);
         resultPage.getData().forEach(System.out::println);
+        dispositionService.destroy();
     }
 
 }
