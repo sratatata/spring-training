@@ -17,8 +17,8 @@ public class DispositionConfig {
     }
 
     @Bean
-    public ConsoleDispositionLogger dispositionLogger() {
-        return new ConsoleDispositionLogger();
+    public DispositionLogger dispositionLogger() {
+        return new DispositionLogger();
     }
 
 }

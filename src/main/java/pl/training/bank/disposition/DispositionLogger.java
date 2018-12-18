@@ -4,7 +4,7 @@ import org.aspectj.lang.annotation.*;
 import pl.training.bank.BankException;
 
 @Aspect
-public class ConsoleDispositionLogger {
+public class DispositionLogger {
 
     private static final String SEPARATOR = "##################################################################################################";
 
