@@ -10,12 +10,20 @@
 
     <bean id="dispositionLogger" class="pl.training.bank.disposition.DispositionLogger"/>
 
+    <bean id="largeDepositListener" class="pl.training.bank.disposition.LargeDepositListener"/>
+
+    <bean id="largeDepositLogger" class="pl.training.bank.disposition.LargeDepositLogger"/>
+
     <aop:config>
+        <aop:pointcut id="processWithArgs" expression="execution(void pl.training.bank.disposition.DispositionService.process(..)) and args(disposition)"/>
         <aop:aspect ref="dispositionLogger">
             <aop:pointcut id="process" expression="execution(void pl.training.bank.disposition.DispositionService.process(..))"/>
-            <aop:before method="onStart" pointcut="execution(void pl.training.bank.disposition.DispositionService.process(..)) and args(disposition)"/>
+            <aop:before method="onStart" pointcut-ref="processWithArgs"/>
             <aop:after-returning method="onSuccess" pointcut-ref="process"/>
             <aop:after-throwing method="onException" pointcut-ref="process" throwing="ex"/>
+        </aop:aspect>
+        <aop:aspect ref="largeDepositLogger">
+            <aop:before method="onLargeDeposit" pointcut-ref="processWithArgs"/>
         </aop:aspect>
     </aop:config>
 
