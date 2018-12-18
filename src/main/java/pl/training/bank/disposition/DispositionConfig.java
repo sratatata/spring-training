@@ -21,4 +21,14 @@ public class DispositionConfig {
         return new DispositionLogger();
     }
 
+    @Bean
+    public LargeDepositLogger largeDepositLogger() {
+        return new LargeDepositLogger();
+    }
+
+    @Bean
+    public LargeDepositListener largeDepositListener() {
+        return new LargeDepositListener();
+    }
+
 }
