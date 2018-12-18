@@ -1,4 +1,4 @@
-package pl.training.bank.common;
+package pl.training.bank.common.validator;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

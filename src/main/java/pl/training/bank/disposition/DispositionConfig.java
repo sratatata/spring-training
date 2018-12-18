@@ -3,7 +3,6 @@ package pl.training.bank.disposition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.training.bank.account.AccountService;
-import pl.training.bank.common.ValidatorService;
 import pl.training.bank.operation.OperationService;
 
 @Configuration

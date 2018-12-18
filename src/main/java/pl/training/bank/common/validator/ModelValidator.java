@@ -1,4 +1,4 @@
-package pl.training.bank.common;
+package pl.training.bank.common.validator;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class ModelValidator {
     @NonNull
     private ValidatorService validatorService;
 
-    @Before("execution(* *(@Validate (*)))")
+    @Before("execution(* *(@pl.training.bank.common.validator.Validate (*)))")
     public void validate(JoinPoint joinPoint) {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Object[] arguments = joinPoint.getArgs();
