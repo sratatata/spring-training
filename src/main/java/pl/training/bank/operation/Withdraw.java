@@ -1,7 +1,9 @@
 package pl.training.bank.operation;
 
+import org.springframework.stereotype.Service;
 import pl.training.bank.account.Account;
 
+@Service
 public class Withdraw implements Operation {
 
     @Override

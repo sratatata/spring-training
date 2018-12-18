@@ -1,6 +1,7 @@
 package pl.training.bank.account;
 
 import lombok.Setter;
+import org.springframework.stereotype.Repository;
 import pl.training.bank.common.ResultPage;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository("accountRepository")
 public class HashMapAccountRepository implements AccountRepository {
 
     @Setter

@@ -2,12 +2,14 @@ package pl.training.bank.disposition;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import pl.training.bank.account.Account;
 import pl.training.bank.account.AccountService;
 import pl.training.bank.common.ValidatorService;
 import pl.training.bank.operation.Operation;
 import pl.training.bank.operation.OperationService;
 
+@Service
 @RequiredArgsConstructor
 public class DispositionService {
 

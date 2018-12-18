@@ -2,8 +2,10 @@ package pl.training.bank.account;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import pl.training.bank.common.ResultPage;
 
+@Service
 @RequiredArgsConstructor
 public class AccountService {
 
