@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="validationFactory" class="javax.validation.Validation" factory-method="buildDefaultValidatorFactory"/>
+
+    <bean id="validatorFactory" factory-bean="validationFactory" factory-method="getValidator"/>-->
+
+    <bean id="validatorFactory" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <bean id="validatorService" class="pl.training.bank.common.ValidatorService">
+        <constructor-arg name="validator" ref="validatorFactory"/>
+    </bean>
+
+</beans>
