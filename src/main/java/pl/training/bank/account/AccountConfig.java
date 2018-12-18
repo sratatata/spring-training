@@ -10,12 +10,12 @@ public class AccountConfig {
 
     @Bean
     public AccountRepository accountRepository(DataSource dataSource) {
-        return new JdbcTemplateAccountRepository(dataSource);
+        return new JdbcAccountRepository(dataSource);
     }
 
     @Bean
     public AccountNumberGenerator accountNumberGenerator(DataSource dataSource) {
-        return new JdbcTemplateIncrementalAccountNumberGenerator(dataSource);
+        return new JdbcIncrementalAccountNumberGenerator(dataSource);
     }
 
     @Bean

@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Scope;
 import pl.training.bank.account.AccountService;
 import pl.training.bank.operation.OperationService;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class DispositionConfig {
 
@@ -19,6 +21,16 @@ public class DispositionConfig {
     @Bean
     public ConsoleDispositionLogger dispositionLogger() {
         return new ConsoleDispositionLogger();
+    }
+
+    @Bean
+    public ExecutedDispositionRepository executedDispositionRepository(DataSource dataSource) {
+        return new JdbcExecutedDispositionRepository(dataSource);
+    }
+
+    @Bean
+    public ExecutedDispositionLogger executedDispositionLogger(ExecutedDispositionRepository executedDispositionRepository) {
+        return new ExecutedDispositionLogger(executedDispositionRepository);
     }
 
 }

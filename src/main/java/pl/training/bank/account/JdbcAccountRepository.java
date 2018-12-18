@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class JdbcTemplateAccountRepository implements AccountRepository {
+public class JdbcAccountRepository implements AccountRepository {
 
     private static final String INSERT_ACCOUNT = "insert into account (account_number,balance) values (:number,:balance)";
     private static final String UPDATE_ACCOUNT = "update account set balance = :balance where account_number = :number";
@@ -24,7 +24,7 @@ public class JdbcTemplateAccountRepository implements AccountRepository {
     private AccountExtractor accountExtractor = new AccountExtractor();
     private AccountsListExtractor accountsListExtractor = new AccountsListExtractor();
 
-    public JdbcTemplateAccountRepository(DataSource dataSource) {
+    public JdbcAccountRepository(DataSource dataSource) {
         jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
