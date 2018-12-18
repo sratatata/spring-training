@@ -9,7 +9,7 @@ import pl.training.bank.common.ResultPage;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 public class JdbcTemplateAccountRepository implements AccountRepository {
@@ -32,9 +32,12 @@ public class JdbcTemplateAccountRepository implements AccountRepository {
     public Account save(Account account) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(INSERT_ACCOUNT, new BeanPropertySqlParameterSource(account), keyHolder);
-        Long id = ((Integer) keyHolder.getKeys().get("id")).longValue();
-        account.setId(id);
+        account.setId(getKey(keyHolder));
         return account;
+    }
+
+    private long getKey(KeyHolder keyHolder) {
+        return (Integer) Objects.requireNonNull(keyHolder.getKeys()).get("id");
     }
 
     @Override
