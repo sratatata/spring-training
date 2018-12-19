@@ -34,8 +34,8 @@ public class DispositionConfig {
 
 
     @Bean
-    public ExecutedDispositionRepository executedDispositionRepository(SessionFactory sessionFactory) {
-        return new HibernateExecutedDispositionRepository(sessionFactory);
+    public ExecutedDispositionRepository executedDispositionRepository() {
+        return new JpaExecutedDispositionRepository();
     }
 
     @Bean
