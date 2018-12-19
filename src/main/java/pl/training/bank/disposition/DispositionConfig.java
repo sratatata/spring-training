@@ -1,6 +1,5 @@
 package pl.training.bank.disposition;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
