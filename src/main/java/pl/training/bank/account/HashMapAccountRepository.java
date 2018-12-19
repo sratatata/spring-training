@@ -27,7 +27,7 @@ public class HashMapAccountRepository implements AccountRepository {
     }
 
     @Override
-    public synchronized Optional<Account> getBy(String accountNumber) {
+    public synchronized Optional<Account> getByNumber(String accountNumber) {
         return Optional.ofNullable(accounts.get(accountNumber));
     }
 
