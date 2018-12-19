@@ -1,6 +1,5 @@
 package pl.training.bank.account;
 
-import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,11 +16,6 @@ public class AccountConfig {
     @Bean
     public AccountService accountService(AccountNumberGenerator accountNumberGenerator, AccountRepository accountRepository) {
         return new AccountService(accountNumberGenerator, accountRepository);
-    }
-
-    @Bean
-    public AccountMapper accountMapper() {
-        return Mappers.getMapper(AccountMapper.class);
     }
 
 }
