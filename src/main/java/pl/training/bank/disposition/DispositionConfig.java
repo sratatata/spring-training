@@ -1,5 +1,6 @@
 package pl.training.bank.disposition;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +35,11 @@ public class DispositionConfig {
     @Bean
     public ExecutedDispositionLogger executedDispositionLogger(ExecutedDispositionRepository executedDispositionRepository) {
         return new ExecutedDispositionLogger(executedDispositionRepository);
+    }
+
+    @Bean
+    public DispositionMapper dispositionMapper() {
+        return Mappers.getMapper(DispositionMapper.class);
     }
 
 }

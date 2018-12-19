@@ -42,6 +42,7 @@ public class GlobalExceptionHandler {
             description = exceptionName;
 
         }
+        ex.printStackTrace();
         return ResponseEntity.status(status).body(new ExceptionTo(description));
     }
 

@@ -20,14 +20,14 @@ public class DispositionRestController {
     @NonNull
     private DispositionService dispositionService;
     @NonNull
-    private Mapper mapper;
+    private DispositionMapper mapper;
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity process(@RequestBody @Valid DispositionTo dispositionTo, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().build();
         }
-        Disposition disposition = mapper.map(dispositionTo, Disposition.class);
+        Disposition disposition = mapper.map(dispositionTo);
         dispositionService.process(disposition);
         return ResponseEntity.noContent().build();
     }
