@@ -2,6 +2,8 @@ package pl.training.bank.account;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 import pl.training.bank.common.ResultPage;
 
@@ -21,17 +23,18 @@ public class AccountService {
     }
 
     public Account getBy(String accountNumber) {
-        return accountRepository.getBy(accountNumber)
+        return accountRepository.getByNumber(accountNumber)
                 .orElseThrow(AccountNotFoundException::new);
     }
 
     public ResultPage<Account> get(int pageNumber, int pageSize) {
-        return accountRepository.get(pageNumber, pageSize);
+        Page<Account> accountsPage = accountRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        return new ResultPage<>(accountsPage.getContent(), pageNumber, accountsPage.getTotalPages());
     }
 
     public void update(Account account) {
         getBy(account.getNumber());
-        accountRepository.update(account);
+        accountRepository.save(account);
     }
 
 }

@@ -9,11 +9,6 @@ import javax.persistence.EntityManagerFactory;
 public class AccountConfig {
 
     @Bean
-    public AccountRepository accountRepository() {
-        return new JpaAccountRepository();
-    }
-
-    @Bean
     public AccountNumberGenerator accountNumberGenerator(EntityManagerFactory entityManagerFactory) {
         return new JpaIncrementalAccountNumberGenerator(entityManagerFactory);
     }

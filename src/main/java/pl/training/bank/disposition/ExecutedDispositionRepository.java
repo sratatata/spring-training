@@ -1,7 +1,6 @@
 package pl.training.bank.disposition;
 
-public interface ExecutedDispositionRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    void save(ExecutedDisposition executedDisposition);
-
+public interface ExecutedDispositionRepository extends JpaRepository<ExecutedDisposition, Long> {
 }

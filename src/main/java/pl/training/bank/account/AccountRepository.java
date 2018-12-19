@@ -1,17 +1,17 @@
 package pl.training.bank.account;
 
-import pl.training.bank.common.ResultPage;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
-public interface AccountRepository {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    Account save(Account account);
+    Optional<Account> getByNumber(String accountNumber);
 
-    ResultPage<Account> get(int pageNumber, int pageSize);
-
-    Optional<Account> getBy(String accountNumber);
-
-    void update(Account account);
+    @Query("select a from Account a where a.balance >= :balance")
+    List<Account> getAccountsWithBalance(@Param("balance") Long balance);
 
 }

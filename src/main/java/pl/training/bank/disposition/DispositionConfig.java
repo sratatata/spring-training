@@ -31,12 +31,6 @@ public class DispositionConfig {
         return new LargeDepositListener();
     }
 
-
-    @Bean
-    public ExecutedDispositionRepository executedDispositionRepository() {
-        return new JpaExecutedDispositionRepository();
-    }
-
     @Bean
     public ExecutedDispositionLogger executedDispositionLogger(ExecutedDispositionRepository executedDispositionRepository) {
         return new ExecutedDispositionLogger(executedDispositionRepository);
