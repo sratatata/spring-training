@@ -21,7 +21,7 @@ public class AccountService {
     }
 
     public Account getBy(String accountNumber) {
-        return accountRepository.getBy(accountNumber)
+        return accountRepository.getByNumber(accountNumber)
                 .orElseThrow(AccountNotFoundException::new);
     }
 
