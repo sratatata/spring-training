@@ -35,7 +35,7 @@ public class AccountRestController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public AccountTo getAccountById(@PathVariable("id") Long id) {
-        Account account = accountService.getBy(id);
+        Account account = accountService.getById(id);
         return mapper.map(account, AccountTo.class);
     }
 

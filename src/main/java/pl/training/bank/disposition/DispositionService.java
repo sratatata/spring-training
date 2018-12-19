@@ -23,7 +23,7 @@ public class DispositionService {
 
     @ExecutionTime
     public void process(@Validate(exception = InvalidDispositionException.class) Disposition disposition) {
-        Account account = accountService.getBy(disposition.getAccountNumber());
+        Account account = accountService.getByNumber(disposition.getAccountNumber());
         Operation operation = operationService.getBy(disposition.getOperationName());
         operation.execute(account, disposition.getFunds());
         accountService.update(account);

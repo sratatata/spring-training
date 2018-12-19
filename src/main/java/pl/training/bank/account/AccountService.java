@@ -22,12 +22,12 @@ public class AccountService {
         return accountRepository.save(account);
     }
 
-    public Account getBy(String accountNumber) {
+    public Account getByNumber(String accountNumber) {
         return accountRepository.getByNumber(accountNumber)
                 .orElseThrow(AccountNotFoundException::new);
     }
 
-    public Account getBy(Long id) {
+    public Account getById(Long id) {
         return accountRepository.getById(id)
                 .orElseThrow(AccountNotFoundException::new);
     }
@@ -38,7 +38,7 @@ public class AccountService {
     }
 
     public void update(Account account) {
-        getBy(account.getNumber());
+        getByNumber(account.getNumber());
         accountRepository.save(account);
     }
 
