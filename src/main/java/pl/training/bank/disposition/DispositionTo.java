@@ -4,9 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "disposition")
 @Data
 public class DispositionTo {
 

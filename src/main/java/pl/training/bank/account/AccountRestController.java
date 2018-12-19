@@ -12,11 +12,8 @@ import pl.training.bank.common.to.PageTo;
 import java.net.URI;
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
-
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/v1/accounts", produces = {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
+@RequestMapping(value = "/api/v1/accounts")
 @RestController
 public class AccountRestController {
 
