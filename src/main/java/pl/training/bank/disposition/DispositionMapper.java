@@ -7,4 +7,6 @@ public interface DispositionMapper {
 
    Disposition map(DispositionTo dispositionTo);
 
+   Disposition map(DispositionViewModel dispositionViewModel);
+
 }
