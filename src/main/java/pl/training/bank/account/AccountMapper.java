@@ -13,4 +13,9 @@ public interface AccountMapper {
    @IterableMapping(elementTargetType = AccountTo.class)
    List<AccountTo> map(List<Account> accounts);
 
+   AccountViewModel toViewModel(Account account);
+
+   @IterableMapping(elementTargetType = AccountViewModel.class)
+   List<AccountViewModel> toViewModel(List<Account> accounts);
+
 }

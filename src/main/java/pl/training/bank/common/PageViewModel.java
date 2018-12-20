@@ -1,4 +1,4 @@
-package pl.training.bank.common.to;
+package pl.training.bank.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class PageTo<T> {
+public class PageViewModel<T> {
 
     private List<T> data;
     private int pageNumber;

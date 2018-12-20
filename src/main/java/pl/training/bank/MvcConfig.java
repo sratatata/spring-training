@@ -6,10 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import pl.training.bank.common.mapper.Mapper;
 import pl.training.bank.common.mapper.ModelMapperAdapter;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -28,7 +25,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("exceptions");
+        messageSource.setBasenames("exceptions", "i18n");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
@@ -57,6 +54,12 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/views/", ".jsp");
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("index.html").setViewName("index");
     }
 
 }

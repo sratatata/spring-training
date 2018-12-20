@@ -6,5 +6,8 @@
 </head>
 <body>
 <%@ include file="menu.jsp" %>
+<div class="container">
+    <s:message code="account-created.successMessage" arguments="${accountViewModel.number}"/>
+</div>
 </body>
 </html>
