@@ -2,13 +2,18 @@ package pl.training.bank.disposition;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import pl.training.bank.BankException;
+import pl.training.bank.account.AccountNotFoundException;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 @RequestMapping("disposition.html")
 @Controller
@@ -19,6 +24,8 @@ public class DispositionWebController {
     private DispositionService dispositionService;
     @NonNull
     private DispositionMapper dispositionMapper;
+    @NonNull
+    private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showDispositionForm() {
@@ -35,6 +42,12 @@ public class DispositionWebController {
         Disposition disposition = dispositionMapper.map(dispositionViewModel);
         dispositionService.process(disposition);
         return "redirect:index.html";
+    }
+
+    @ExceptionHandler(BankException.class)
+    public ModelAndView onBankException(BankException ex, Locale locale) {
+        String message = messageSource.getMessage(ex.getClass().getSimpleName(), null, locale);
+        return new ModelAndView("error", "message", message);
     }
 
 }
