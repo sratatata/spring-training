@@ -23,6 +23,7 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
