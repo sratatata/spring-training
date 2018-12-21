@@ -11,4 +11,7 @@
     <li class="nav-item">
         <a class="nav-link" href="disposition.html?operationName=withdraw"><s:message code="index.withdrawLink"/></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="logout.html"><s:message code="index.logoutLink"/></a>
+    </li>
 </ul>
