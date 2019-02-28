@@ -2,6 +2,7 @@ package pl.training.bank;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -22,6 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @NonNull
     private DataSource dataSource;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -29,8 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth//.inMemoryAuthentication()
-            //    .withUser("admin").password("admin").roles("Admin");
+        auth/*.inMemoryAuthentication()
+                .withUser("admin").password(passwordEncoder.encode("admin")).roles("ADMIN")*/
             .jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery("select login,password,enabled from client where login = ?")
@@ -43,7 +47,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/resources/**").permitAll()
                     .antMatchers("/**").hasRole("ADMIN")
                 .and()
-                    //.httpBasic();
                     .formLogin()
                         .loginPage("/login.html")
                         .permitAll()
