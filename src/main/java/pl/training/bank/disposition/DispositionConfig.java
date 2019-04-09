@@ -1,5 +1,6 @@
 package pl.training.bank.disposition;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,8 +35,8 @@ public class DispositionConfig {
     }
 
     @Bean
-    public ExecutedDispositionRepository executedDispositionRepository(DataSource dataSource) {
-        return new JdbcExecutedDispositionRepository(dataSource);
+    public ExecutedDispositionRepository executedDispositionRepository(SessionFactory sessionFactory) {
+        return new HibernateExecutedDispositionRepository(sessionFactory);
     }
 
     @Bean
