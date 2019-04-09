@@ -18,11 +18,10 @@ public class BankConfig {
     public DataSource dataSource(Environment environment) {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setUsername(environment.getProperty("database.username"));
-        dataSource.setPassword(environment.getProperty("datasource.password"));
-        dataSource.setJdbcUrl(environment.getProperty("datasource.url"));
+        dataSource.setPassword(environment.getProperty("database.password"));
+        dataSource.setJdbcUrl(environment.getProperty("database.url"));
         dataSource.setDriverClassName(environment.getProperty("database.driver"));
         return dataSource;
     }
-
 
 }
