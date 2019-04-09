@@ -8,11 +8,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @PropertySource("classpath:jdbc.properties")
 @EnableAspectJAutoProxy
+@EnableTransactionManagement
 @Configuration
 public class BankConfig {
 
