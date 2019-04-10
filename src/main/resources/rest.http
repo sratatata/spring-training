@@ -3,7 +3,19 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/v1/accounts/2
+GET http://localhost:8080/api/v1/accounts/1
 Accept: application/json
+
+###
+
+GET http://localhost:8080/api/v1/accounts
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/v1/dispositions
+Content-Type: application/json
+
+{"accountNumber": "00000000000000000000000001", "funds": 3000, "operationName": "deposit"}
 
 ###

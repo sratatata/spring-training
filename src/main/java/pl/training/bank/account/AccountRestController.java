@@ -4,6 +4,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.training.bank.common.ResultPage;
+import pl.training.bank.common.ResultPageTransferObject;
 import pl.training.bank.common.UriBuilder;
 
 import java.net.URI;
@@ -31,6 +33,14 @@ public class AccountRestController {
     public AccountTransferObject getById(@PathVariable("id")  Long id) {
         Account account = accountService.getById(id);
         return accountMapper.toAccountTransferObject(account);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResultPageTransferObject<AccountTransferObject> getAccounts(
+            @RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        ResultPage<Account> accountsPage = accountService.get(pageNumber, pageSize);
+        return accountMapper.toResultPageTransferObject(accountsPage);
     }
 
     @ExceptionHandler(AccountNotFoundException.class)
