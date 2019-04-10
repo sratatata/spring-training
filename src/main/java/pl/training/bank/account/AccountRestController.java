@@ -30,7 +30,7 @@ public class AccountRestController {
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public AccountTransferObject getById(@PathVariable("id")  Long id) {
+    public AccountTransferObject getById(@PathVariable("id") Long id) {
         Account account = accountService.getById(id);
         return accountMapper.toAccountTransferObject(account);
     }
