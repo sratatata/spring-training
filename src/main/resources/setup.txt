@@ -1,2 +1,0 @@
-create table account (id serial, account_number varchar(26), balance bigint);
-create table disposition (id serial, account_number varchar(26), funds bigint, operation_timestamp bigint, operation_type  varchar(50));
