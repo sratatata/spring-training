@@ -37,4 +37,9 @@ public class AccountService {
         accountRepository.save(account);
     }
 
+    public Account getById(Long id) {
+        return accountRepository.getById(id)
+                .orElseThrow(AccountNotFoundException::new);
+    }
+
 }
