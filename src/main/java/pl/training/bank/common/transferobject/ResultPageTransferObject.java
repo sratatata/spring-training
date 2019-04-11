@@ -1,4 +1,4 @@
-package pl.training.bank.common;
+package pl.training.bank.common.transferobject;
 
 import lombok.*;
 

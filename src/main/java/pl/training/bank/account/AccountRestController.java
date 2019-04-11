@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.training.bank.common.ResultPage;
-import pl.training.bank.common.ResultPageTransferObject;
+import pl.training.bank.common.transferobject.ResultPageTransferObject;
 import pl.training.bank.common.UriBuilder;
 
 import java.net.URI;

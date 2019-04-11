@@ -3,7 +3,7 @@ package pl.training.bank.account;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import pl.training.bank.common.ResultPage;
-import pl.training.bank.common.ResultPageTransferObject;
+import pl.training.bank.common.transferobject.ResultPageTransferObject;
 
 import java.util.List;
 
