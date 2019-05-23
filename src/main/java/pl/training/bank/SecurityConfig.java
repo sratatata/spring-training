@@ -9,19 +9,28 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.sql.DataSource;
+
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @NonNull
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    @NonNull
+    private final DataSource dataSource;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder)
-                .withUser("admin").password(passwordEncoder.encode("123")).roles("ADMIN");
+        auth//.inMemoryAuthentication()
+              //  .passwordEncoder(passwordEncoder)
+                //.withUser("admin").password(passwordEncoder.encode("123")).roles("ADMIN");
+        .jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select login,password,enabled from client where login = ?")
+                .authoritiesByUsernameQuery("select login,role from client where login = ?");
+
     }
 
     @Override
@@ -31,4 +40,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .httpBasic();
     }
+
 }
